@@ -1,4 +1,6 @@
 ﻿  q1.c
-C:\Users\sela1\OneDrive\Desktop\EE Studies\סמסטר ב\C\Assigments\EX5 projects\TAU-C-HW5\ex5\ex5\q1.c(75,15): warning C4101: 'components': unreferenced local variable
-C:\Users\sela1\OneDrive\Desktop\EE Studies\סמסטר ב\C\Assigments\EX5 projects\TAU-C-HW5\ex5\ex5\q1.c(61): warning C4715: 'read_components': not all control paths return a value
+C:\Users\sela1\OneDrive\Desktop\EE Studies\סמסטר ב\C\Assigments\EX5 projects\TAU-C-HW5\ex5\ex5\q1.c(33,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\sela1\OneDrive\Desktop\EE Studies\סמסטר ב\C\Assigments\EX5 projects\TAU-C-HW5\ex5\ex5\q1.c(35,50): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+C:\Users\sela1\OneDrive\Desktop\EE Studies\סמסטר ב\C\Assigments\EX5 projects\TAU-C-HW5\ex5\ex5\q1.c(131,15): warning C4101: 'components': unreferenced local variable
+C:\Users\sela1\OneDrive\Desktop\EE Studies\סמסטר ב\C\Assigments\EX5 projects\TAU-C-HW5\ex5\ex5\q1.c(117): warning C4716: 'read_components': must return a value
   ex5.vcxproj -> C:\Users\sela1\OneDrive\Desktop\EE Studies\סמסטר ב\C\Assigments\EX5 projects\TAU-C-HW5\ex5\Debug\ex5.exe

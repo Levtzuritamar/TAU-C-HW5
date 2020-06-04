@@ -30,9 +30,9 @@ int chr2int(char c)
 int str2int(char* st)
 {
 	int num = 0;
-	for (int i = 0; st[i]!='\0'; i++)
+	for (int i = 0; i < strlen(st); i++)
 	{
-		num += chr2int(st[i]) * pow(10, i);
+		num += chr2int(st[i]) * pow(10, strlen(st)-1-i);
 	}
 	return num;
 }
@@ -62,12 +62,10 @@ FILE* read_file(char* file_name)
 
 HW_component read_components(char* components_file_name)
 {
-	char c = '0';
-	int	num = 0;
-	char name[NAME_LENGTH];
+	char name[NAME_LENGTH] = "";
 	char word[NAME_LENGTH];
-	BOOL num_flag = FALSE;
-
+	BOOL num_flag = FALSE, name_flag = FALSE;
+	
 	HW_component* head = NULL;
 	HW_component* current_component = NULL;
 	HW_component* new_component = NULL;
@@ -78,11 +76,23 @@ HW_component read_components(char* components_file_name)
 	while (!feof(components_file_ptr)) 
 	{
 		if (strcmp(word, "$$$") == 0)
+		{
 			num_flag = TRUE;
+			name_flag = FALSE;
+		}
 
 		else if (!num_flag)
 		{
-			strcat(name, word);
+			if (!name_flag)
+			{
+				strcat(name, word);
+				name_flag = TRUE;
+			}
+			else
+			{
+				strcat(name, " ");
+				strcat(name, word);
+			}
 		}
 		
 		else if (num_flag)
@@ -92,16 +102,13 @@ HW_component read_components(char* components_file_name)
 			new_component->copies = str2int(word);
 
 			if (head == NULL)
-			{
 				head = new_component;
-			}
 			else
-			{
 				current_component->next = new_component;
-			}
 			
 			current_component = new_component;
-			num_flag = FALSE;		
+			num_flag = FALSE;
+			strcpy(name, "");
 		}
 	
 		fscanf(components_file_ptr, "%s", word);
