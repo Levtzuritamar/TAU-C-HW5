@@ -1,4 +1,7 @@
 ﻿  q1.c
-C:\Users\sela1\OneDrive\Desktop\EE Studies\סמסטר ב\C\Assigments\EX5 projects\TAU-C-HW5\ex5\ex5\q1.c(33,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\sela1\OneDrive\Desktop\EE Studies\סמסטר ב\C\Assigments\EX5 projects\TAU-C-HW5\ex5\ex5\q1.c(35,50): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+C:\Users\sela1\OneDrive\Desktop\EE Studies\סמסטר ב\C\Assigments\EX5 projects\TAU-C-HW5\ex5\ex5\q1.c(31,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\sela1\OneDrive\Desktop\EE Studies\סמסטר ב\C\Assigments\EX5 projects\TAU-C-HW5\ex5\ex5\q1.c(33,50): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+C:\Users\sela1\OneDrive\Desktop\EE Studies\סמסטר ב\C\Assigments\EX5 projects\TAU-C-HW5\ex5\ex5\q1.c(249,7): warning C4101: 'action': unreferenced local variable
+C:\Users\sela1\OneDrive\Desktop\EE Studies\סמסטר ב\C\Assigments\EX5 projects\TAU-C-HW5\ex5\ex5\q1.c(75): warning C4172: returning address of local variable or temporary: final_string
+C:\Users\sela1\OneDrive\Desktop\EE Studies\סמסטר ב\C\Assigments\EX5 projects\TAU-C-HW5\ex5\ex5\q1.c(190): warning C4715: 'rename_component': not all control paths return a value
   ex5.vcxproj -> C:\Users\sela1\OneDrive\Desktop\EE Studies\סמסטר ב\C\Assigments\EX5 projects\TAU-C-HW5\ex5\Debug\ex5.exe

@@ -102,6 +102,14 @@ HW_component* add_component(HW_component* head, HW_component* to_add)
 	return head;
 }
 
+HW_component* add_raw_component(HW_component* head, char* name, int copies)
+{
+	HW_component* new_component = (HW_component*)my_malloc(sizeof(HW_component));
+	strcpy(new_component->name, name);
+	new_component->copies = copies;
+	new_component->next = NULL;
+	return add_component(head, new_component);
+}
 
 HW_component* read_components(char* components_file_name)
 {
@@ -139,12 +147,7 @@ HW_component* read_components(char* components_file_name)
 		
 		else if (num_flag)
 		{
-			new_component = (HW_component*)my_malloc(sizeof(HW_component));
-			strcpy(new_component->name, name);
-			new_component->copies = str2int(word);
-			new_component->next = NULL;
-			
-			head = add_component(head, new_component);
+			head = add_raw_component(head, name, str2int(word));
 			
 			num_flag = FALSE;
 			strcpy(name, "");
@@ -156,15 +159,32 @@ HW_component* read_components(char* components_file_name)
 }
 
 
-void rename_component(HW_component* head, char* name, char* new_name)
+HW_component* rename_component(HW_component* head, char* name, char* new_name)
 {
-	// TODO: SORT - Sela
-	HW_component* current_component = head;
+	HW_component *current_component = head, *prev_component = NULL;
+
+	// Handel first node match
+	if (strcmp(current_component->name, name) == 0)
+	{
+		head = current_component->next;
+		strcpy(current_component->name, new_name);
+		head = add_component(head, current_component);
+		return head;
+	}
+	current_component = current_component->next;
+	prev_component = current_component;
+	
 	while(current_component->next != NULL)
 	{
 		if (strcmp(current_component->name, name) == 0)
+		{
 			strcpy(current_component->name, new_name);
+			prev_component->next = current_component->next;
+			head = add_component(head, current_component);
+			return head;
+		}
 		current_component = current_component->next;
+		prev_component = current_component;
 	}
 
 }
@@ -179,14 +199,42 @@ void returned_from_customer()
 	// TODO: Itamari
 }
 
-void production()
+HW_component* production(HW_component* head, char* name, int copies)
 {
-	// TODO: Sela
+	// TODO: check if the production should REPLACE or ADD the num of copies
+	HW_component* current_component = head;
+
+	while (current_component->next != NULL)
+	{
+		if (strcmp(current_component->name, name) == 0)
+		{
+			current_component->copies = copies;
+			return head;
+		}
+		current_component = current_component->next;
+	}
+
+	return add_raw_component(head, name, copies);
 }
 
-void fatal_malfunction()
+void fatal_malfunction(HW_component* head, char* name, int malfunction_copies)
 {
-	// TODO: Sela
+	// TODO: check if the copies functions are not reversed 
+
+	HW_component* current_component = head;
+
+	while (current_component->next != NULL)
+	{
+		if (strcmp(current_component->name, name) == 0)
+		{
+			if (malfunction_copies > current_component->copies)
+				current_component->copies = 0;
+			else
+				current_component->copies -= malfunction_copies;
+			return;
+		}
+		current_component = current_component->next;
+	}
 }
 
 void fire()
@@ -216,7 +264,7 @@ void read_actions(char* actions_file_name)
 
 			fscanf(actions_file_ptr, "%s", word);
 
-			strcpy(component_name, read_string(actions_file_ptr);
+			strcpy(component_name, read_string(actions_file_ptr));
 
 			fscanf(actions_file_ptr, "%s", word);
 			strcpy(component_name, word);
@@ -290,6 +338,14 @@ int main(int argc, char* argv[])
 		return -1;
 
 	HW_component *components = read_components(argv[2]);
+
+	//components = rename_component(components, "Hub", "Hobbies");
+	//components = rename_component(components, "Hobbies", "Ilan");
+	//components = production(components, "Hub pro", 56);
+	//components = production(components, "Hub", 25);
+	//components = production(components, "Gate Master", 25);
+	//fatal_malfunction(components, "Hub", 25);
+	//fatal_malfunction(components, "Hub pro", 600);
 
 	return 0;
 }
